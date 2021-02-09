@@ -8,6 +8,8 @@ import VideoForm from "./components/Videos/VideoForm";
 import "bootswatch/dist/pulse/bootstrap.min.css";
 import "./index.css";
 import Navbar from "./components/Navbar/Navbar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,6 +20,7 @@ ReactDOM.render(
           <Route exact path="/" component={VideoList} />
           <Route path="/new-video" component={VideoForm} />
         </Switch>
+        <ToastContainer />
       </div>
     </BrowserRouter>
   </React.StrictMode>,
