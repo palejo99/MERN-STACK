@@ -4,6 +4,7 @@ import * as videoService from "./VideoService";
 import VideoItem from "./VideoItem";
 
 const VideoList = () => {
+  const [loading, setLoading] = useState(true);
   // el use state es del tipo de arreglo de videos
   const [videos, setVideos] = useState<Video[]>([]);
 
@@ -19,16 +20,31 @@ const VideoList = () => {
       })
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
     setVideos(formatedVideos);
+    setLoading(false);
   };
 
   useEffect(() => {
     loadVideos();
   }, []);
+
+  if (loading)
+    return (
+      <div className="row">
+        <div className="col-md-12 my-auto">
+          <div className="spinner-grow text-primary" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+    );
+
+  if (videos.length === 0) return <div>there are no videos yet</div>;
+
   return (
     <div className="row">
-      {videos.map((video) => {
-        return <VideoItem video={video} key={video._id} />;
-      })}
+      {videos.map((video) => (
+        <VideoItem video={video} key={video._id} loadVideos={loadVideos} />
+      ))}
     </div>
   );
 };
