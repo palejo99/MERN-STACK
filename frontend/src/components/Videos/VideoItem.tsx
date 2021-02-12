@@ -9,8 +9,9 @@ interface Props {
   loadVideos: () => void;
 }
 
-const VideoItem = (props: Props) => {
-  const { video, loadVideos } = props;
+const VideoItem = ({ video, loadVideos }: Props) => {
+  //const VideoItem = (props: Props) => {
+  // const { video, loadVideos } = props;
   const history = useHistory();
 
   const handleDelete = async (id: string) => {
@@ -22,10 +23,11 @@ const VideoItem = (props: Props) => {
       <div
         className="card card-body video-card animate__animated animate__backInUp"
         style={{ cursor: "pointer" }}
-        onClick={() => history.push(`/update/${video._id}`)}
       >
         <div className="d-flex justify-content-between">
-          <h5>{video.title}</h5>
+          <h1 onClick={() => history.push(`/update/${video._id}`)}>
+            {video.title}{" "}
+          </h1>
 
           <span
             className="text-danger"

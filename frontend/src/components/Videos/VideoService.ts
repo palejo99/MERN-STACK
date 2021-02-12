@@ -19,10 +19,18 @@ export const getVideo = async (id: string) => {
 
 export const updateVideo = async (id: string, video: Video) => {
   // retorna un solo vídeo
-  return await axios.put(`${API}/videos/${id}`, video);
+  try {
+    return await axios.put(`${API}/video/${id}`, video);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const deleteVideo = async (id: string) => {
   // retorna un solo vídeo
-  return await axios.delete(`${API}/videos/${id}`);
+  try {
+    return await axios.delete(`${API}/video/${id}`);
+  } catch (e) {
+    console.log(e);
+  }
 };

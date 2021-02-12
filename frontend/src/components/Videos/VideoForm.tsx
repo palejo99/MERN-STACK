@@ -47,6 +47,7 @@ const VideoForm = () => {
       toast.success("New video added");
     } else {
       await videoService.updateVideo(params.id, video);
+      history.push("/");
     }
     //  history.push("/");
     // console.log(res);
